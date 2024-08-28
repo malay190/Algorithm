@@ -1,1 +1,1 @@
-This Repo contains the important Algorithm
+This Repo contains the important Algorithms
