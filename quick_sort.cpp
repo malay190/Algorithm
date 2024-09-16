@@ -1,36 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int partition(vector<int>& arr, int low, int high) {
-
-    int pivot = arr[high];
-    int i = low - 1;
-    for (int j = low; j <= high - 1; j++) {
-        if (arr[j] < pivot) {
+// Important part of the quick sort is the partition algorithm, it will put the pivot element in the
+// right position in the array such that the element to the left of the pivot is smaller and the element to the
+// right side of the array is greater.
+int partition(int arr[], int first, int last)
+{
+    int x = arr[last];
+    int i = first - 1;
+    for (int j = first; j < last; j++)
+    {
+        if (x >= arr[j])
+        {
             i++;
             swap(arr[i], arr[j]);
         }
     }
-    swap(arr[i + 1], arr[high]);  
+    swap(arr[i + 1], arr[last]);
     return i + 1;
 }
-
-void quickSort(vector<int>& arr, int low, int high) {
-  
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+void quick_sort(int arr[], int first, int last)
+{
+    if (first < last)
+    {
+        int q = partition(arr, first, last);
+        quick_sort(arr, first, q - 1);
+        quick_sort(arr, q + 1, last);
     }
 }
+int main()
+{
 
-int main() {
-    vector<int> arr = {10, 7, 8, 9, 1, 5};
-    int n = arr.size();
-    quickSort(arr, 0, n - 1);
-    cout << "Sorted Array\n";
-    for (int i = 0; i < n; i++) {
+    int arr[] = {9, 6, 0, 5, 0, 8, 2, 4, 7};
+    int start = 0;
+    int end = sizeof(arr) / sizeof(arr[0]) - 1;
+    quick_sort(arr, start, end);
+    for (int i = 0; i <= end; i++)
+    {
         cout << arr[i] << " ";
     }
+    cout << endl;
     return 0;
 }
