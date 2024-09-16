@@ -1,34 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void selectionSort(int arr[], int n)
+void selection_sort(int arr[], int len)
 {
-    for (int i = 0; i < n - 1; i++)
-    {
-        int min_idx = i;
-        for (int j = i + 1; j < n; j++)
-        {
-            if (arr[j] < arr[min_idx])
-                min_idx = j;
-        }
-        if (min_idx != i)
-            swap(arr[min_idx], arr[i]);
-    }
-}
 
-void printArray(int arr[], int n)
-{
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+    for (int i = 0; i < len - 1; i++)
+    {
+        int min_index = i;
+        for (int j = i + 1; j < len; j++)
+        {
+            if (arr[j] < arr[min_index])
+            {
+                min_index = j;
+            }
+        }
+        if (min_index != i)
+        {
+            swap(arr[min_index], arr[i]);
+        }
+    }
 }
 
 int main()
 {
-    int arr[] = {64, 25, 12, 22, 11};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    selectionSort(arr, n);
-    cout << "Sorted array: \n";
-    printArray(arr, n);
+
+    int arr[] = {9, 6, 0, 5, 0, 8, 2, 4, 7};
+    int end = sizeof(arr) / sizeof(arr[0]);
+    selection_sort(arr, end);
+    for (int i = 0; i < end; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
     return 0;
 }
